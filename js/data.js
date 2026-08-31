@@ -1,4 +1,4 @@
-/* NL2GQL Bench — seed data transcribed from the AutoGraphQL paper (Tables 2–5). */
+/* NL2GraphQL Bench — seed data transcribed from the AutoGraphQL paper (Tables 2–5). */
 
 const CATEGORY_KEYS = [
   "aliases",

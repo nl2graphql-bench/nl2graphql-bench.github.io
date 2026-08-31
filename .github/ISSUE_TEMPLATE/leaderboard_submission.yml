@@ -1,5 +1,5 @@
 name: Leaderboard submission
-description: Submit a model's results for the NL2GQL Bench leaderboard
+description: Submit a model's results for the NL2GraphQL Bench leaderboard
 title: "[Submission] "
 labels: ["submission"]
 body:

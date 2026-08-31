@@ -1,4 +1,4 @@
-/* NL2GQL Bench — front-end logic: hero graph, sortable heatmap matrix, radar compare, dataset bars. */
+/* NL2GraphQL Bench — front-end logic: hero graph, sortable heatmap matrix, radar compare, dataset bars. */
 
 (function () {
   "use strict";

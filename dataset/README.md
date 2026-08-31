@@ -1,6 +1,6 @@
 # Dataset
 
-The full NL2GQL Bench corpus (17,621 instances — 9,118 train / 6,403 public
+The full NL2GraphQL Bench corpus (17,621 instances — 9,118 train / 6,403 public
 benchmark / 2,100 hidden benchmark, per the AutoGraphQL paper) is **not yet
 released** in this repo.
 
