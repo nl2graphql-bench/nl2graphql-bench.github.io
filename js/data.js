@@ -152,8 +152,8 @@ const CATEGORY_DISTRIBUTION = [
   { name: "External Fragments", train: 1498, test: 1070 },
   { name: "Filters", train: 1474, test: 1031 },
   { name: "Inline Fragments", train: 1530, test: 1068 },
-  { name: "Pagination", train: 861, test: 478 },
-  { name: "Mutations", train: 668, test: 616 },
+  { name: "Pagination", train: 861, test: 616 },
+  { name: "Mutations", train: 668, test: 478 },
 ];
 
 /* Figure 3 — domain distribution across the 173 source schemas. */
@@ -215,7 +215,7 @@ type Query {
 
   instructor(id: ID!): Faculty
 }`,
-  nl: `List the first 10 third-year Computer Science students. Include their names, email (optionally), course details, grades, and instructor name.`,
+  nl: `List the first 10 third-year Computer Science students. Include their names, email (optionally), course details, grades, and instructor details.`,
   query: `query CourseEnrollment(
   $showEmail: Boolean!
 ) {
