@@ -3,8 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NL2GraphQL Bench — a leaderboard for GraphQL query generation</title>
-<meta name="description" content="A leaderboard for natural-language-to-GraphQL query generation, built on the AutoGraphQL bring-your-own-schema benchmark." />
+<title>AutoGraphQL | EMNLP 2026 Best Paper</title>
+<meta name="description" content="AutoGraphQL is an EMNLP 2026 Best Paper and bring-your-own-schema framework for building and evaluating NL2GraphQL systems." />
+<meta property="og:title" content="AutoGraphQL | EMNLP 2026 Best Paper" />
+<meta property="og:description" content="17,621 executable NL2GraphQL instances across 173 schemas, with open-weight model adaptation and cross-schema evaluation." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://nl2graphql-bench.github.io/" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -13,10 +18,11 @@
   <div class="wrap">
     <a href="#" class="brand">NL2GraphQL<span class="dot">·</span>Bench</a>
     <div class="nav-links">
-      <a href="#leaderboard">Leaderboard</a>
-      <a href="#submit">Submit</a>
+      <a href="#dataset">Dataset</a>
+      <a href="#results">Results</a>
+      <a href="#findings">Findings</a>
       <a href="#compare">Compare</a>
-      <a href="#about">About</a>
+      <a href="#cite">Cite</a>
       <a href="AutoGraphQL.pdf" class="nav-cta">Paper ↗</a>
       <a href="https://github.com/nl2graphql-bench/nl2graphql-bench.github.io" class="nav-cta" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
@@ -26,32 +32,99 @@
 <header class="hero hero-compact">
   <div class="hero-graph" id="heroGraph"></div>
   <div class="wrap">
-    <span class="hero-kicker">● 2,100 hidden instances reserved for future submissions</span>
-    <h1>NL2GraphQL Bench</h1>
-    <p class="lede">The leaderboard for natural-language → GraphQL query generation, across GraphQL schemas models have never seen.</p>
+    <span class="hero-kicker">★ EMNLP 2026 Best Paper Award</span>
+    <h1>Bring your schema.<br><span class="hl">Build and benchmark NL2GraphQL.</span></h1>
+    <p class="lede"><strong>AutoGraphQL</strong> turns a GraphQL schema into executable training and evaluation data, then supports model adaptation and cross-schema benchmarking end to end.</p>
+    <div class="hero-actions">
+      <a href="#dataset" class="btn btn-primary">Dataset &amp; release status ↓</a>
+      <a href="AutoGraphQL.pdf" class="btn btn-ghost">Read the paper ↗</a>
+    </div>
     <div class="stat-row compact">
-      <div class="stat"><div class="n"><span>17,621</span></div><div class="l">NL–GraphQL pairs</div></div>
+      <div class="stat"><div class="n"><span>17,621</span></div><div class="l">executable instances</div></div>
       <div class="stat"><div class="n"><span>173</span></div><div class="l">distinct schemas</div></div>
       <div class="stat"><div class="n"><span>7</span></div><div class="l">query categories</div></div>
-      <div class="stat"><div class="n"><span>2,100</span></div><div class="l">hidden eval instances</div></div>
+      <div class="stat"><div class="n"><span>2,100</span></div><div class="l">withheld benchmark instances</div></div>
     </div>
   </div>
 </header>
 
-<section id="leaderboard">
+<section id="dataset" class="section-secondary dataset-featured">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Dataset release</div>
+      <h2>17,621 validated NL2GraphQL instances</h2>
+      <p>The corpus spans 173 schemas and seven query categories. The 9,118-instance training split and 6,403-instance public benchmark are designated for public release under the <a href="LICENSE">MIT License</a>; the 2,100-instance hidden benchmark is not distributed.</p>
+    </div>
+    <div class="download-panel">
+      <div class="download-row">
+        <div class="download-info">
+          <div class="dl-name">Training set</div>
+          <div class="dl-meta">9,118 instances</div>
+        </div>
+        <span class="dl-badge pending">Release pending</span>
+      </div>
+      <div class="download-row">
+        <div class="download-info">
+          <div class="dl-name">Public benchmark</div>
+          <div class="dl-meta">6,403 instances</div>
+        </div>
+        <span class="dl-badge pending">Release pending</span>
+      </div>
+      <div class="download-row">
+        <div class="download-info">
+          <div class="dl-name">Hidden benchmark</div>
+          <div class="dl-meta">2,100 instances — withheld for future leaderboard evaluation</div>
+        </div>
+        <span class="dl-badge pending">Not distributed</span>
+      </div>
+      <div class="download-row">
+        <div class="download-info">
+          <div class="dl-name">Sample instance (format reference)</div>
+          <div class="dl-meta">1 worked example, illustrates the instance schema — not a corpus sample</div>
+        </div>
+        <a href="dataset/sample_instance.json" download class="dl-badge ready">Download JSON ↓</a>
+      </div>
+      <p class="fine-print" style="margin-top:12px;">The training and public-benchmark files are not yet present in this repository. This page will link them when the release is posted.</p>
+    </div>
+  </div>
+  <div class="wrap dataset-grid">
+    <div>
+      <div class="section-head">
+        <div class="eyebrow">Corpus composition</div>
+        <h3>Three schema-disjoint splits</h3>
+      </div>
+      <div class="split-cards" id="splitCards"></div>
+      <p style="color:var(--ink-soft); font-size:0.88rem;">
+        Query categories per split (training / public benchmark):
+      </p>
+      <div class="bars" id="categoryBars"></div>
+    </div>
+    <div>
+      <div class="section-head">
+        <div class="eyebrow">Coverage</div>
+        <h3>Domain distribution</h3>
+        <p>The 173 source schemas span seven application domains, giving a realistic spread of entity types and query patterns rather than one narrow vertical.</p>
+      </div>
+      <div class="bars" id="domainBars"></div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
   <div class="wrap">
     <div class="section-head slim">
-      <div class="eyebrow">Leaderboard</div>
-      <h2>Ranked by overall accuracy</h2>
+      <div class="eyebrow">Results reported in the paper</div>
+      <h2>Public-benchmark performance</h2>
+      <p>Scores from Tables 3–5 on the 6,403-instance public benchmark. The open-weight models are shown before and after fine-tuning on 9,118 AutoGraphQL training instances; Claude Sonnet 4.5 is the paper's frontier-model reference.</p>
     </div>
 
     <div class="board-controls">
-      <div class="tabs" role="tablist">
-        <button class="size-tab active" data-size="all">All models</button>
-        <button class="size-tab" data-size="small">Small · &lt;20B</button>
-        <button class="size-tab" data-size="large">Large · ≥20B</button>
+      <div class="tabs" role="group" aria-label="Filter paper results by model size">
+        <button class="size-tab active" data-size="all" aria-pressed="true">All models</button>
+        <button class="size-tab" data-size="small" aria-pressed="false">Small · &lt;20B</button>
+        <button class="size-tab" data-size="large" aria-pressed="false">Large / closed</button>
       </div>
-      <button class="detail-toggle" id="detailToggle">Show category breakdown ▾</button>
+      <button class="detail-toggle" id="detailToggle" aria-expanded="false">Show category breakdown ▾</button>
     </div>
 
     <div class="matrix-legend" id="legendWrap">
@@ -62,6 +135,7 @@
 
     <div class="matrix-wrap">
       <table class="matrix" id="matrixTable">
+        <caption class="sr-only">Public-benchmark accuracy reported in AutoGraphQL Tables 3 through 5</caption>
         <thead><tr id="matrixHead"></tr></thead>
         <tbody id="matrixBody"></tbody>
       </table>
@@ -70,59 +144,31 @@
   </div>
 </section>
 
-<section id="submit">
+<section id="findings">
   <div class="wrap">
     <div class="section-head slim">
-      <div class="eyebrow">Get on the board</div>
-      <h2>Submitting a result</h2>
-      <p>There's no automated submission pipeline yet — the hidden 2,100-instance benchmark is reserved precisely so future submissions mean something. Here's the process for now:</p>
-      <p class="provenance">This process follows submission practices established by prior text-to-{SQL,GraphQL} leaderboards — self-reported scores on a public split, a structured submission with model/method details, and independent verification against a held-out set before a result is posted. See <a href="https://bird-bench.github.io/" target="_blank" rel="noopener">BIRD-SQL</a> and <a href="https://spider2-sql.github.io/" target="_blank" rel="noopener">Spider 2.0</a> for the prior art we're building on.</p>
+      <div class="eyebrow">What the experiments establish</div>
+      <h2>Compact models close much of the frontier gap</h2>
+      <p>The paper separates the strongest single run, seed robustness, and transfer to an external benchmark. Keeping those results distinct avoids overstating any one number.</p>
     </div>
     <div class="submit-shell">
       <div class="step">
         <div class="num">01</div>
-        <h3>Run on the public benchmark</h3>
-        <p>Evaluate your model on the 6,403-instance public benchmark using an execution-grounded, semantic-equivalence scorer (not exact-match) across all seven categories.</p>
+        <h3>Fine-tuning works</h3>
+        <p>The strongest Llama-3.1-8B run improves from <strong>29.22%</strong> to <strong>42.57%</strong>. Across the evaluated models, AutoGraphQL supervision yields gains of up to <strong>22.57 percentage points</strong>.</p>
       </div>
       <div class="step">
         <div class="num">02</div>
-        <h3>Open a submission issue</h3>
-        <p>Use the <strong>Leaderboard Submission</strong> issue template — it walks you through every field below.</p>
-        <a href="https://github.com/nl2graphql-bench/nl2graphql-bench.github.io/issues/new?template=leaderboard_submission.yml" class="step-link">Open the template →</a>
+        <h3>Near-frontier overall</h3>
+        <p>The best 8B single run reaches <strong>42.57%</strong> versus Claude Sonnet 4.5 at <strong>44.23%</strong>. Across three seeds, Llama averages <strong>42.92 ± 2.04%</strong>, a 1.31-point mean gap.</p>
       </div>
       <div class="step">
         <div class="num">03</div>
-        <h3>Hidden-set verification</h3>
-        <p>Before we post a headline number, we independently score your submission against the 2,100-instance hidden set and publish that number alongside your reported one.</p>
+        <h3>The gains transfer</h3>
+        <p>On the external benchmark of Kesarwani et al. (2024), the fine-tuned open-weight models reach <strong>49.31%</strong>, <strong>50.31%</strong>, and <strong>51.20%</strong>.</p>
       </div>
     </div>
-
-    <div class="submit-details">
-      <div class="submit-col">
-        <h4>What your submission needs</h4>
-        <ul class="check-list">
-          <li><b>Predictions file</b> — one JSON object per public-benchmark instance, keyed by <code>id</code>.</li>
-          <li><b>Model card</b> — name, parameter count (or "undisclosed" for closed APIs), open- or closed-weight, base model + fine-tuning method if adapted.</li>
-          <li><b>Per-category scores</b> — aliases, directives, external fragments, inline fragments, filters, pagination, mutations, plus overall.</li>
-          <li><b>Reproducibility link</b> — code, weights, or paper. Closed models: API name + version pinned at eval time.</li>
-          <li><b>Contact</b> — an email we can reach you at once hidden-set scoring is done.</li>
-        </ul>
-        <div class="callout">
-          Don't include real production schemas, credentials, or internal API packages in anything you submit — score against the public benchmark's own schemas only.
-        </div>
-      </div>
-      <div class="submit-col">
-        <h4>Predictions format</h4>
-        <pre class="code-block">{
-  "model": "your-model-name",
-  "predictions": [
-    { "id": "pub-000418", "query": "query { ... }" },
-    { "id": "pub-000419", "query": "query { ... }" }
-  ]
-}</pre>
-        <p class="fine-print">One entry per public-benchmark <code>id</code>. We run your predictions (or, for the hidden set, your released model/API) through the same execution-grounded scorer used for every other row on the board — no exact-string matching.</p>
-      </div>
-    </div>
+    <p class="finding-note">The adapted Llama model also exceeds the Claude reference on directives, filters, pagination, and mutations. These are public-benchmark results; the 2,100-instance hidden split remains withheld for future evaluation.</p>
   </div>
 </section>
 
@@ -131,7 +177,7 @@
     <div class="section-head slim">
       <div class="eyebrow">Head-to-head</div>
       <h2>Compare model profiles, not just rank</h2>
-      <p>Two models can post similar overall scores for very different reasons. Pick up to four to overlay their category profiles.</p>
+      <p>Two paper runs can post similar overall scores for very different reasons. Pick up to four to overlay their category profiles.</p>
     </div>
     <div class="compare-shell">
       <div>
@@ -156,11 +202,10 @@
         <h3>Text-to-SQL has Spider and BIRD. GraphQL has a different problem.</h3>
       </div>
       <p>
-        GraphQL adoption is projected to pass 60% of enterprises by 2027, but every organization exposes a
-        <em>different</em> schema — its own types, filters, fragments, and mutations. A model that's great
-        at one company's API says little about the next. This benchmark, built on the
-        <strong>AutoGraphQL</strong> bring-your-own-schema framework, is designed around that reality:
-        cross-schema generalization is the thing being measured, not recall of a fixed database.
+        Enterprise GraphQL APIs are schema-specific: each organization exposes its own types, fields,
+        arguments, filters, and mutations. A model that works on one API may fail on the next.
+        <strong>AutoGraphQL</strong> is designed around that reality: bring a schema, generate validated
+        data for it, adapt a model, and evaluate whether the model generalizes to schemas it did not see in training.
       </p>
       <p>
         Each instance is a validated triple — <code>(schema, natural-language query, ground-truth GraphQL
@@ -169,10 +214,10 @@
       </p>
     </div>
     <ul class="diff-list">
-      <li><b>Cross-schema, not fixed-schema.</b> <span>173 schemas across 7 domains — every eval instance is an unseen API, not a memorized one.</span></li>
-      <li><b>Construct-level diagnosis.</b> <span>Toggle the leaderboard's category breakdown to see aliases, directives, fragments, filters, pagination, and mutations individually.</span></li>
+      <li><b>Cross-schema, not fixed-schema.</b> <span>The 104 training, 49 public-benchmark, and 20 hidden-benchmark schema sets are pairwise disjoint.</span></li>
+      <li><b>Construct-level diagnosis.</b> <span>Toggle the result table's category breakdown to see aliases, directives, fragments, filters, pagination, and mutations individually.</span></li>
       <li><b>Execution-validated ground truth.</b> <span>Every reference query is schema- and execution-checked, then deduplicated by canonical structure.</span></li>
-      <li><b>A held-out set no one has trained on.</b> <span>2,100 instances are withheld specifically for future leaderboard submissions.</span></li>
+      <li><b>A genuinely withheld benchmark.</b> <span>2,100 instances across 20 schemas are not released and are reserved for future evaluation.</span></li>
     </ul>
   </div>
 </section>
@@ -203,80 +248,34 @@
   </div>
 </section>
 
-<section id="dataset" class="section-secondary">
-  <div class="wrap">
-    <div class="download-panel">
-      <div class="download-row">
-        <div class="download-info">
-          <div class="dl-name">Training set</div>
-          <div class="dl-meta">9,118 instances</div>
-        </div>
-        <span class="dl-badge pending">Coming soon</span>
-      </div>
-      <div class="download-row">
-        <div class="download-info">
-          <div class="dl-name">Public benchmark</div>
-          <div class="dl-meta">6,403 instances</div>
-        </div>
-        <span class="dl-badge pending">Coming soon</span>
-      </div>
-      <div class="download-row">
-        <div class="download-info">
-          <div class="dl-name">Hidden benchmark</div>
-          <div class="dl-meta">2,100 instances — withheld, used for verification only</div>
-        </div>
-        <span class="dl-badge pending">Not distributed</span>
-      </div>
-      <div class="download-row">
-        <div class="download-info">
-          <div class="dl-name">Sample instance (format reference)</div>
-          <div class="dl-meta">1 worked example, illustrates the instance schema — not a corpus sample</div>
-        </div>
-        <a href="dataset/sample_instance.json" download class="dl-badge ready">Download JSON ↓</a>
-      </div>
-      <p class="fine-print" style="margin-top:12px;">The full corpus isn't released in this repo yet. Watch the repo or open an issue to be notified when it lands.</p>
-    </div>
-  </div>
-  <div class="wrap dataset-grid">
-    <div>
-      <div class="section-head">
-        <div class="eyebrow">Dataset</div>
-        <h3>Corpus composition</h3>
-      </div>
-      <div class="split-cards" id="splitCards"></div>
-      <p style="color:var(--ink-soft); font-size:0.88rem;">
-        Query categories per split (train / public benchmark):
-      </p>
-      <div class="bars" id="categoryBars"></div>
-    </div>
-    <div>
-      <div class="section-head">
-        <div class="eyebrow">Coverage</div>
-        <h3>Domain distribution</h3>
-        <p>The 173 source schemas span seven application domains, giving a realistic spread of entity types and query patterns rather than one narrow vertical.</p>
-      </div>
-      <div class="bars" id="domainBars"></div>
-    </div>
-  </div>
-</section>
-
 <section id="cite" class="section-secondary">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Citation</div>
       <h3>Citing this benchmark</h3>
     </div>
-    <div class="cite-box">This benchmark is built on the AutoGraphQL framework, currently under anonymous review (ACL submission). A formal BibTeX entry will be published here once the paper is out of review — check back, or open an issue if you need a citable reference sooner.</div>
+    <div class="cite-box"><pre>@inproceedings{battu-etal-2026-autographql,
+  title     = {AutoGraphQL: A Bring-Your-Own-Schema Framework for
+               Adapting Open-Weight LLMs to GraphQL APIs},
+  author    = {Battu, Keya and Mehta, Parth and
+               Balagopal, Harikrishnan and Kesarwani, Manish},
+  booktitle = {Proceedings of the 2026 Conference on Empirical Methods
+               in Natural Language Processing},
+  year      = {2026},
+  url       = {https://nl2graphql-bench.github.io/}
+}</pre></div>
+    <p class="cite-note">Recipient of an EMNLP 2026 Best Paper Award. Please replace this provisional entry with the official ACL Anthology BibTeX once the proceedings record is available.</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="foot-note">NL2GraphQL Bench · an independent leaderboard built on the AutoGraphQL corpus</div>
+    <div class="foot-note">AutoGraphQL · EMNLP 2026 Best Paper · official paper and benchmark companion</div>
     <div class="f-links">
       <a href="AutoGraphQL.pdf">Paper</a>
       <a href="#dataset">Dataset</a>
-      <a href="#submit">Submit</a>
+      <a href="#cite">Cite</a>
+      <a href="LICENSE">MIT License</a>
     </div>
   </div>
 </footer>

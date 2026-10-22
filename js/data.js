@@ -1,4 +1,4 @@
-/* NL2GraphQL Bench — seed data transcribed from the AutoGraphQL paper (Tables 2–5). */
+/* AutoGraphQL paper results and corpus statistics (Tables 1–5 and Figure 3). */
 
 const CATEGORY_KEYS = [
   "aliases",
@@ -21,15 +21,15 @@ const CATEGORY_LABELS = {
 };
 
 /*
- * Unified leaderboard — every row is a ranked, competing submission.
- * (No row is pinned/unranked "for reference" — this is a leaderboard, not a paper figure.)
+ * Public-benchmark runs reported in Tables 3–5.
+ * These are paper results, not hidden-set scores or community submissions.
  * sizeBucket: "small" (<20B params) or "large" (>=20B, or undisclosed/closed-weight frontier).
  */
 const LEADERBOARD_ENTRIES = [
   {
     id: "claude-sonnet-4-5",
     model: "Claude Sonnet 4.5",
-    setting: "2-shot prompting",
+    setting: "Frontier reference · Table 5",
     params: "undisclosed",
     paramsB: null,
     sizeBucket: "large",
@@ -49,8 +49,8 @@ const LEADERBOARD_ENTRIES = [
     filters: 67.60, pagination: 71.75, mutations: 87.45, overall: 42.57,
   },
   {
-    id: "mistral-8b-a",
-    model: "Mistral-8B-Instruct-2410",
+    id: "ministral-8b-a",
+    model: "Ministral-8B-Instruct-2410",
     setting: "Fine-tuned · LoRA A (lr 1e-4)",
     params: "8B",
     paramsB: 8,
@@ -60,8 +60,8 @@ const LEADERBOARD_ENTRIES = [
     filters: 66.44, pagination: 71.92, mutations: 87.66, overall: 42.29,
   },
   {
-    id: "mistral-8b-b",
-    model: "Mistral-8B-Instruct-2410",
+    id: "ministral-8b-b",
+    model: "Ministral-8B-Instruct-2410",
     setting: "Fine-tuned · LoRA B (lr 5e-5)",
     params: "8B",
     paramsB: 8,
@@ -115,15 +115,15 @@ const LEADERBOARD_ENTRIES = [
     filters: 41.90, pagination: 48.54, mutations: 46.23, overall: 29.22,
   },
   {
-    id: "mistral-8b-base",
-    model: "Mistral-8B-Instruct-2410",
+    id: "ministral-8b-base",
+    model: "Ministral-8B-Instruct-2410",
     setting: "2-shot, no fine-tuning",
     params: "8B",
     paramsB: 8,
     sizeBucket: "small",
     weightClass: "open",
     aliases: 17.15, directives: 6.79, extFragments: 27.57, inlineFragments: 23.22,
-    filters: 35.40, pagination: 45.35, mutations: 50.65, overall: 26.64,
+    filters: 35.40, pagination: 50.65, mutations: 47.91, overall: 26.64,
   },
   {
     id: "granite-3.1-8b-base",
@@ -141,8 +141,8 @@ const LEADERBOARD_ENTRIES = [
 /* Table 1 — corpus composition. */
 const CORPUS_SPLITS = [
   { split: "Training", instances: 9118, note: "used for fine-tuning" },
-  { split: "Public Benchmark", instances: 6403, note: "reproducible eval, published" },
-  { split: "Hidden Benchmark", instances: 2100, note: "reserved — future leaderboard eval" },
+  { split: "Public Benchmark", instances: 6403, note: "reported eval split · release pending" },
+  { split: "Hidden Benchmark", instances: 2100, note: "withheld · future evaluation" },
 ];
 
 /* Table 2 — category-wise distribution. */
@@ -172,7 +172,7 @@ const TASK_EXAMPLE = {
   schema: `type Student {
   id: ID!
   name: String!
-  email: String!
+  email: String
   major: String!
   year: Int
   advisor: Faculty
@@ -181,7 +181,7 @@ const TASK_EXAMPLE = {
 
 type Enrollment {
   semester: String!
-  grade: String!
+  grade: String
   course: Course!
 }
 
@@ -189,7 +189,8 @@ type Course {
   code: String!
   title: String!
   credits: Int!
-  department: String!
+  level: String
+  department: String
   instructor: Faculty
 }
 

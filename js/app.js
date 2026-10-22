@@ -1,4 +1,4 @@
-/* NL2GraphQL Bench — front-end logic: hero graph, sortable heatmap matrix, radar compare, dataset bars. */
+/* AutoGraphQL companion — hero graph, sortable result matrix, radar comparison, dataset bars. */
 
 (function () {
   "use strict";
@@ -81,8 +81,7 @@
     el.innerHTML = html;
   })();
 
-  /* ---------- leaderboard matrix ---------- */
-  const MEDALS = ["🥇", "🥈", "🥉"];
+  /* ---------- paper result matrix ---------- */
 
   let sortKey = "overall";
   let sortDir = "desc";
@@ -113,20 +112,20 @@
       { key: "overall", label: "Overall" },
     ];
     headEl.innerHTML =
-      `<th>Rank</th>` +
       cols
         .map((c) => {
           const sortable = c.key !== "model" && c.key !== "params";
           const sortedClass = sortKey === c.key ? "sorted" : "";
           const arrow = sortKey === c.key ? `<span class="arrow">${sortDir === "desc" ? "▼" : "▲"}</span>` : "";
-          return `<th class="${sortedClass}" ${sortable ? `data-key="${c.key}"` : ""}>${c.label}${arrow}</th>`;
+          const ariaSort = sortKey === c.key ? `aria-sort="${sortDir === "desc" ? "descending" : "ascending"}"` : "";
+          return `<th scope="col" class="${sortedClass}" ${sortable ? `data-key="${c.key}"` : ""} ${ariaSort}>${c.label}${arrow}</th>`;
         })
         .join("");
   }
 
   function renderMatrixBody() {
     const rows = currentRows();
-    footEl.textContent = "Accuracy is execution-grounded via semantic-equivalence scoring, not exact string match. Fine-tuned settings, baselines, and closed-weight models are all shown as ranked, competing entries.";
+    footEl.textContent = "Paper results on the public split (Tables 3–5), evaluated with RGEval semantic-equivalence scoring rather than exact string match. Open-weight rows use 2-shot evaluation before and after fine-tuning; Claude Sonnet 4.5 is the paper's frontier reference.";
     legendWrap.style.display = detailed ? "flex" : "none";
 
     const sorted = rows.slice().sort((a, b) => {
@@ -137,7 +136,7 @@
     const bounds = {};
     if (detailed) CATEGORY_KEYS.forEach((k) => (bounds[k] = columnBounds(rows, k)));
 
-    function rowHtml(r, rank) {
+    function rowHtml(r) {
       const cells = detailed
         ? CATEGORY_KEYS.map((k) => {
             const { min, max } = bounds[k];
@@ -145,11 +144,9 @@
             return `<td class="cell" style="background:${lerpColor(t)};color:${textColorFor(t)}">${r[k].toFixed(2)}</td>`;
           }).join("")
         : "";
-      const medal = rank <= 3 ? MEDALS[rank - 1] : rank;
       const weightBadge = r.weightClass === "closed" ? '<span class="badge-weight closed">closed-weight</span>' : '<span class="badge-weight open">open-weight</span>';
       return `
-        <tr class="${rank <= 3 ? "top top-" + rank : ""}">
-          <td class="rank">${medal}</td>
+        <tr>
           <td class="model-cell">
             <span class="model-name">${r.model}</span>
             <span class="model-setting">${r.setting} ${weightBadge}</span>
@@ -160,7 +157,7 @@
         </tr>`;
     }
 
-    bodyEl.innerHTML = sorted.map((r, i) => rowHtml(r, i + 1)).join("");
+    bodyEl.innerHTML = sorted.map((r) => rowHtml(r)).join("");
   }
 
   function renderMatrix() {
@@ -184,7 +181,9 @@
   document.querySelectorAll(".size-tab").forEach((btn) => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".size-tab").forEach((b) => b.classList.remove("active"));
+      document.querySelectorAll(".size-tab").forEach((b) => b.setAttribute("aria-pressed", "false"));
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       sizeTab = btn.dataset.size;
       renderMatrix();
     });
@@ -193,6 +192,7 @@
   detailToggle.addEventListener("click", () => {
     detailed = !detailed;
     detailToggle.textContent = detailed ? "Hide category breakdown ▲" : "Show category breakdown ▾";
+    detailToggle.setAttribute("aria-expanded", String(detailed));
     renderMatrix();
   });
 
@@ -304,14 +304,14 @@
       </div>`
   ).join("");
 
-  const maxCategoryTrain = Math.max(...CATEGORY_DISTRIBUTION.map((c) => c.train));
+  const maxCategoryTotal = Math.max(...CATEGORY_DISTRIBUTION.map((c) => c.train + c.test));
   document.getElementById("categoryBars").innerHTML = CATEGORY_DISTRIBUTION.map((c) => {
-    const pct = (c.train / maxCategoryTrain) * 100;
+    const pct = ((c.train + c.test) / maxCategoryTotal) * 100;
     return `
       <div class="bar-row">
         <div>${c.name}</div>
         <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
-        <div class="val">${c.train + c.test}</div>
+        <div class="val">${c.train.toLocaleString()} / ${c.test.toLocaleString()}</div>
       </div>`;
   }).join("");
 
