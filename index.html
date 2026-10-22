@@ -18,8 +18,8 @@
   <div class="wrap">
     <a href="#" class="brand">NL2GraphQL<span class="dot">·</span>Bench</a>
     <div class="nav-links">
-      <a href="#dataset">Dataset</a>
       <a href="#results">Leaderboard</a>
+      <a href="#dataset">Dataset</a>
       <a href="#compare">Compare</a>
       <a href="#about">About</a>
       <a href="#cite">Cite</a>
@@ -47,6 +47,40 @@
     </div>
   </div>
 </header>
+
+<section id="results">
+  <div class="wrap">
+    <div class="section-head slim">
+      <div class="eyebrow">Leaderboard · results reported in the paper</div>
+      <h2>Public-benchmark performance</h2>
+      <p>Scores from Tables 3–5 on the 6,403-instance public benchmark. The open-weight models are shown before and after fine-tuning on 9,118 AutoGraphQL training instances; Claude Sonnet 4.5 is the paper's frontier-model reference.</p>
+    </div>
+
+    <div class="board-controls">
+      <div class="tabs" role="group" aria-label="Filter paper results by model size">
+        <button class="size-tab active" data-size="all" aria-pressed="true">All models</button>
+        <button class="size-tab" data-size="small" aria-pressed="false">Small · &lt;20B</button>
+        <button class="size-tab" data-size="large" aria-pressed="false">Large / closed</button>
+      </div>
+      <button class="detail-toggle" id="detailToggle" aria-expanded="false">Show category breakdown ▾</button>
+    </div>
+
+    <div class="matrix-legend" id="legendWrap">
+      <span>Low</span>
+      <span class="legend-scale" id="legendScale"></span>
+      <span>High</span>
+    </div>
+
+    <div class="matrix-wrap">
+      <table class="matrix" id="matrixTable">
+        <caption class="sr-only">Public-benchmark accuracy reported in AutoGraphQL Tables 3 through 5</caption>
+        <thead><tr id="matrixHead"></tr></thead>
+        <tbody id="matrixBody"></tbody>
+      </table>
+    </div>
+    <p class="matrix-footnote" id="matrixFootnote"></p>
+  </div>
+</section>
 
 <section id="dataset" class="section-secondary dataset-featured">
   <div class="wrap">
@@ -110,40 +144,6 @@
   </div>
 </section>
 
-<section id="results">
-  <div class="wrap">
-    <div class="section-head slim">
-      <div class="eyebrow">Leaderboard · results reported in the paper</div>
-      <h2>Public-benchmark performance</h2>
-      <p>Scores from Tables 3–5 on the 6,403-instance public benchmark. The open-weight models are shown before and after fine-tuning on 9,118 AutoGraphQL training instances; Claude Sonnet 4.5 is the paper's frontier-model reference.</p>
-    </div>
-
-    <div class="board-controls">
-      <div class="tabs" role="group" aria-label="Filter paper results by model size">
-        <button class="size-tab active" data-size="all" aria-pressed="true">All models</button>
-        <button class="size-tab" data-size="small" aria-pressed="false">Small · &lt;20B</button>
-        <button class="size-tab" data-size="large" aria-pressed="false">Large / closed</button>
-      </div>
-      <button class="detail-toggle" id="detailToggle" aria-expanded="false">Show category breakdown ▾</button>
-    </div>
-
-    <div class="matrix-legend" id="legendWrap">
-      <span>Low</span>
-      <span class="legend-scale" id="legendScale"></span>
-      <span>High</span>
-    </div>
-
-    <div class="matrix-wrap">
-      <table class="matrix" id="matrixTable">
-        <caption class="sr-only">Public-benchmark accuracy reported in AutoGraphQL Tables 3 through 5</caption>
-        <thead><tr id="matrixHead"></tr></thead>
-        <tbody id="matrixBody"></tbody>
-      </table>
-    </div>
-    <p class="matrix-footnote" id="matrixFootnote"></p>
-  </div>
-</section>
-
 <section id="compare">
   <div class="wrap">
     <div class="section-head slim">
@@ -172,7 +172,7 @@
         <h3>Text-to-SQL has Spider and BIRD. GraphQL has a different problem.</h3>
       </div>
       <p>
-        Enterprise GraphQL APIs are schema-specific: each organization exposes its own types, fields,
+        Enterprise <a href="https://graphql.org/learn/introduction/" target="_blank" rel="noopener">GraphQL</a> APIs are schema-specific: each organization exposes its own types, fields,
         arguments, filters, and mutations. A model that works on one API may fail on the next.
         <strong>AutoGraphQL</strong> is designed around that reality: bring a schema, generate validated
         data for it, adapt a model, and evaluate whether the model generalizes to schemas it did not see in training.
@@ -189,6 +189,66 @@
       <li><b>Execution-validated ground truth.</b> <span>Every reference query is schema- and execution-checked, then deduplicated by canonical structure.</span></li>
       <li><b>A genuinely withheld benchmark.</b> <span>2,100 instances across 20 schemas are not released and are reserved for future evaluation.</span></li>
     </ul>
+  </div>
+  <div class="wrap about-more">
+    <details class="about-disclosure">
+      <summary>
+        <span>
+          <b>GraphQL context</b>
+          <small>What the language is and why each schema changes the task</small>
+        </span>
+      </summary>
+      <div class="disclosure-body context-body">
+        <p><a href="https://graphql.org/learn/introduction/" target="_blank" rel="noopener">GraphQL</a> is an open-source query language and runtime for APIs. Every service defines its own typed schema, so a generated query must use the fields, arguments, types, and relationships that the target API actually exposes. This schema dependence is the central challenge that AutoGraphQL measures.</p>
+        <div class="reference-links" aria-label="Official GraphQL resources">
+          <a href="https://graphql.org/learn/introduction/" target="_blank" rel="noopener">Official introduction ↗</a>
+          <a href="https://graphql.org/community/foundation/" target="_blank" rel="noopener">GraphQL Foundation ↗</a>
+        </div>
+      </div>
+    </details>
+
+    <details class="about-disclosure">
+      <summary>
+        <span>
+          <b>Research lineage</b>
+          <small>Five earlier papers that led to AutoGraphQL</small>
+        </span>
+      </summary>
+      <div class="disclosure-body">
+        <ol class="research-list">
+          <li>
+            <span class="research-year">IJCAI 2024 · Demo</span>
+            <a href="https://www.ijcai.org/proceedings/2024/1002.pdf" target="_blank" rel="noopener">LLM-powered GraphQL Generator for Data Retrieval ↗</a>
+            <p>An initial pipeline for translating natural-language requests into GraphQL queries.</p>
+          </li>
+          <li>
+            <span class="research-year">EMNLP 2024 · Industry</span>
+            <a href="https://aclanthology.org/2024.emnlp-industry.117/" target="_blank" rel="noopener">GraphQL Query Generation: A Large Training and Benchmarking Dataset ↗</a>
+            <p>The first large training and evaluation resource in this research program.</p>
+          </li>
+          <li>
+            <span class="research-year">NAACL 2025 · Industry</span>
+            <a href="https://aclanthology.org/2025.naacl-industry.76/" target="_blank" rel="noopener">Schema and Natural Language Aware In-Context Learning ↗</a>
+            <p>Schema structure and natural-language similarity guide the selection of demonstrations.</p>
+          </li>
+          <li>
+            <span class="research-year">IEEE ICWS 2025</span>
+            <a href="https://research.ibm.com/publications/robust-evaluation-of-llm-generated-graphql-queries-for-web-services" target="_blank" rel="noopener">Robust Evaluation of LLM-Generated GraphQL Queries ↗</a>
+            <p>RGEval evaluates semantic equivalence beyond exact string matching.</p>
+          </li>
+          <li>
+            <span class="research-year">SIGMOD 2026 · SynthAI</span>
+            <a href="https://doi.org/10.1145/3814574.3816745" target="_blank" rel="noopener">Synthetic Data Generation for Schema-Aware Query Interfaces ↗</a>
+            <p>A preliminary study covering 1,845 instances across 20 schemas.</p>
+          </li>
+          <li class="research-current">
+            <span class="research-year">EMNLP 2026 · Best Paper</span>
+            <a href="AutoGraphQL.pdf">AutoGraphQL: A Bring-Your-Own-Schema Framework ↗</a>
+            <p>The unified framework scales the resource to 17,621 instances across 173 schemas.</p>
+          </li>
+        </ol>
+      </div>
+    </details>
   </div>
 </section>
 
