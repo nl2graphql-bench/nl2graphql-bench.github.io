@@ -20,8 +20,8 @@
     <div class="nav-links">
       <a href="#dataset">Dataset</a>
       <a href="#results">Results</a>
-      <a href="#findings">Findings</a>
       <a href="#compare">Compare</a>
+      <a href="#about">About</a>
       <a href="#cite">Cite</a>
       <a href="AutoGraphQL.pdf" class="nav-cta">Paper ↗</a>
       <a href="https://github.com/nl2graphql-bench/nl2graphql-bench.github.io" class="nav-cta" target="_blank" rel="noopener">GitHub ↗</a>
@@ -144,34 +144,6 @@
   </div>
 </section>
 
-<section id="findings">
-  <div class="wrap">
-    <div class="section-head slim">
-      <div class="eyebrow">What the experiments establish</div>
-      <h2>Compact models close much of the frontier gap</h2>
-      <p>The paper separates the strongest single run, seed robustness, and transfer to an external benchmark. Keeping those results distinct avoids overstating any one number.</p>
-    </div>
-    <div class="submit-shell">
-      <div class="step">
-        <div class="num">01</div>
-        <h3>Fine-tuning works</h3>
-        <p>The strongest Llama-3.1-8B run improves from <strong>29.22%</strong> to <strong>42.57%</strong>. Across the evaluated models, AutoGraphQL supervision yields gains of up to <strong>22.57 percentage points</strong>.</p>
-      </div>
-      <div class="step">
-        <div class="num">02</div>
-        <h3>Near-frontier overall</h3>
-        <p>The best 8B single run reaches <strong>42.57%</strong> versus Claude Sonnet 4.5 at <strong>44.23%</strong>. Across three seeds, Llama averages <strong>42.92 ± 2.04%</strong>, a 1.31-point mean gap.</p>
-      </div>
-      <div class="step">
-        <div class="num">03</div>
-        <h3>The gains transfer</h3>
-        <p>On the external benchmark of Kesarwani et al. (2024), the fine-tuned open-weight models reach <strong>49.31%</strong>, <strong>50.31%</strong>, and <strong>51.20%</strong>.</p>
-      </div>
-    </div>
-    <p class="finding-note">The adapted Llama model also exceeds the Claude reference on directives, filters, pagination, and mutations. These are public-benchmark results; the 2,100-instance hidden split remains withheld for future evaluation.</p>
-  </div>
-</section>
-
 <section id="compare">
   <div class="wrap">
     <div class="section-head slim">
@@ -192,13 +164,11 @@
   </div>
 </section>
 
-<div class="wrap"><div class="divider-label">More about the benchmark</div></div>
-
 <section id="about" class="section-secondary">
   <div class="wrap about-grid">
     <div>
       <div class="section-head">
-        <div class="eyebrow">Why this benchmark exists</div>
+        <div class="eyebrow">About the benchmark</div>
         <h3>Text-to-SQL has Spider and BIRD. GraphQL has a different problem.</h3>
       </div>
       <p>
@@ -274,6 +244,7 @@
     <div class="f-links">
       <a href="AutoGraphQL.pdf">Paper</a>
       <a href="#dataset">Dataset</a>
+      <a href="#about">About</a>
       <a href="#cite">Cite</a>
       <a href="LICENSE">MIT License</a>
     </div>
