@@ -24,7 +24,7 @@
       <a href="#about">About</a>
       <a href="#cite">Cite</a>
       <a href="AutoGraphQL.pdf" class="nav-cta">Paper ↗</a>
-      <a href="https://github.com/nl2graphql-bench/nl2graphql-bench.github.io" class="nav-cta" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://github.com/nl2graphql-bench/index" class="nav-cta" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </div>
 </nav>
@@ -87,29 +87,29 @@
     <div class="section-head">
       <div class="eyebrow">Dataset release</div>
       <h2>17,621 validated NL2GraphQL instances</h2>
-      <p>The corpus spans 173 schemas and seven query categories. The 9,118-instance training split and 6,403-instance public benchmark are designated for public release under the <a href="LICENSE">MIT License</a>; the 2,100-instance hidden benchmark is not distributed.</p>
+      <p>The corpus spans 173 schemas and seven query categories. The 9,118-instance training set and the 6,403-instance public benchmark are released under the MIT License at <a href="https://github.com/nl2graphql-bench/datasets" target="_blank" rel="noopener">nl2graphql-bench/datasets</a>. The 2,100-instance hidden benchmark is not released: it is what we score submissions against, so if it were public a model could be tuned on it and the score would mean nothing.</p>
     </div>
     <div class="download-panel">
       <div class="download-row">
         <div class="download-info">
           <div class="dl-name">Training set</div>
-          <div class="dl-meta">9,118 instances</div>
+          <div class="dl-meta">9,118 instances, 104 schemas — <code>train_data.jsonl.gz</code></div>
         </div>
-        <span class="dl-badge pending">Release pending</span>
+        <a href="https://github.com/nl2graphql-bench/datasets/raw/main/train_data.jsonl.gz" class="dl-badge ready" target="_blank" rel="noopener">Download ↓</a>
       </div>
       <div class="download-row">
         <div class="download-info">
           <div class="dl-name">Public benchmark</div>
-          <div class="dl-meta">6,403 instances</div>
+          <div class="dl-meta">6,403 instances, 49 schemas — <code>test_data.jsonl.gz</code></div>
         </div>
-        <span class="dl-badge pending">Release pending</span>
+        <a href="https://github.com/nl2graphql-bench/datasets/raw/main/test_data.jsonl.gz" class="dl-badge ready" target="_blank" rel="noopener">Download ↓</a>
       </div>
       <div class="download-row">
         <div class="download-info">
           <div class="dl-name">Hidden benchmark</div>
-          <div class="dl-meta">2,100 instances — withheld for future leaderboard evaluation</div>
+          <div class="dl-meta">2,100 instances, 20 schemas — not released, used to score submissions</div>
         </div>
-        <span class="dl-badge pending">Not distributed</span>
+        <span class="dl-badge pending">Not released</span>
       </div>
       <div class="download-row">
         <div class="download-info">
@@ -118,18 +118,32 @@
         </div>
         <a href="dataset/sample_instance.json" download class="dl-badge ready">Download JSON ↓</a>
       </div>
-      <p class="fine-print" style="margin-top:12px;">The training and public-benchmark files are not yet present in this repository. This page will link them when the release is posted.</p>
+      <p class="fine-print" style="margin-top:12px;">Files are gzipped: 310 MB and 388 MB uncompressed. Use the <code>CleanSchema</code> field for validation; see the <a href="https://github.com/nl2graphql-bench/datasets" target="_blank" rel="noopener">dataset README</a> for all fields.</p>
+      <div class="download-row" style="margin-top:14px;">
+        <div class="download-info">
+          <div class="dl-name">Scorer</div>
+          <div class="dl-meta">RGEval, the same scorer behind this leaderboard — score your own model before submitting</div>
+        </div>
+        <a href="https://github.com/nl2graphql-bench/evaluation" class="dl-badge ready" target="_blank" rel="noopener">evaluation ↗</a>
+      </div>
+      <div class="download-row">
+        <div class="download-info">
+          <div class="dl-name">Generation framework</div>
+          <div class="dl-meta">AutoGraphQL — turn your own GraphQL schema into training and benchmark data</div>
+        </div>
+        <a href="https://github.com/nl2graphql-bench/generation" class="dl-badge ready" target="_blank" rel="noopener">generation ↗</a>
+      </div>
     </div>
   </div>
   <div class="wrap dataset-grid">
     <div>
       <div class="section-head">
         <div class="eyebrow">Corpus composition</div>
-        <h3>Three schema-disjoint splits</h3>
+        <h3>Three sets, no shared schemas</h3>
       </div>
       <div class="split-cards" id="splitCards"></div>
       <p style="color:var(--ink-soft); font-size:0.88rem;">
-        Query categories per split (training / public benchmark):
+        Query categories per set (training / public benchmark):
       </p>
       <div class="bars" id="categoryBars"></div>
     </div>
