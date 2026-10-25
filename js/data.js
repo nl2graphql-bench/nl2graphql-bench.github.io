@@ -140,9 +140,9 @@ const LEADERBOARD_ENTRIES = [
 
 /* Table 1 — corpus composition. */
 const CORPUS_SPLITS = [
-  { split: "Training", instances: 9118, note: "used for fine-tuning" },
-  { split: "Public Benchmark", instances: 6403, note: "reported eval split · release pending" },
-  { split: "Hidden Benchmark", instances: 2100, note: "withheld · future evaluation" },
+  { split: "Training", instances: 9118, note: "104 schemas · released (MIT)" },
+  { split: "Public Benchmark", instances: 6403, note: "49 schemas · released (MIT)" },
+  { split: "Hidden Benchmark", instances: 2100, note: "20 schemas · not released" },
 ];
 
 /* Table 2 — category-wise distribution. */
