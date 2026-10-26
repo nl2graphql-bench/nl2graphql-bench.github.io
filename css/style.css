@@ -589,3 +589,42 @@ footer .f-links a:hover { color: var(--pink-deep); }
   .radar-panel { overflow: hidden; }
   .radar-panel svg { max-width: 100%; height: auto; }
 }
+
+/* ---------------------------------------------------------------------------
+   Contributors
+   --------------------------------------------------------------------------- */
+.people-block { margin-bottom: 30px; }
+.people-block:last-child { margin-bottom: 0; }
+
+.people-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 16px;
+}
+
+.people-note {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  margin: -6px 0 14px;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+  gap: 14px;
+}
+
+.person {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 13px 15px;
+}
+
+.p-name { font-weight: 600; font-size: 0.93rem; margin-bottom: 2px; }
+.p-aff { font-size: 0.8rem; color: var(--ink-soft); }
