@@ -607,10 +607,11 @@ footer .f-links a:hover { color: var(--pink-deep); }
   margin-bottom: 16px;
 }
 
-.people-note {
-  font-size: 0.86rem;
+.people-intro {
+  max-width: 62ch;
+  font-size: 0.9rem;
   color: var(--ink-soft);
-  margin: -6px 0 14px;
+  margin: 0 0 24px;
 }
 
 .people-grid {
@@ -628,3 +629,26 @@ footer .f-links a:hover { color: var(--pink-deep); }
 
 .p-name { font-weight: 600; font-size: 0.93rem; margin-bottom: 2px; }
 .p-aff { font-size: 0.8rem; color: var(--ink-soft); }
+
+.p-mail {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--pink-deep);
+  text-decoration: none;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+}
+.p-mail:hover { text-decoration: underline; }
+.p-mail-none { color: var(--ink-soft); font-style: italic; }
+
+.p-papers {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  line-height: 1.5;
+}
