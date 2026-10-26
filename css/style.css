@@ -589,3 +589,66 @@ footer .f-links a:hover { color: var(--pink-deep); }
   .radar-panel { overflow: hidden; }
   .radar-panel svg { max-width: 100%; height: auto; }
 }
+
+/* ---------------------------------------------------------------------------
+   Contributors
+   --------------------------------------------------------------------------- */
+.people-block { margin-bottom: 30px; }
+.people-block:last-child { margin-bottom: 0; }
+
+.people-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 16px;
+}
+
+.people-intro {
+  max-width: 62ch;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+  gap: 14px;
+}
+
+.person {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 13px 15px;
+}
+
+.p-name { font-weight: 600; font-size: 0.93rem; margin-bottom: 2px; }
+.p-aff { font-size: 0.8rem; color: var(--ink-soft); }
+
+.p-mail {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--pink-deep);
+  text-decoration: none;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+}
+.p-mail:hover { text-decoration: underline; }
+.p-mail-none { color: var(--ink-soft); font-style: italic; }
+
+.p-papers {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  line-height: 1.5;
+}
