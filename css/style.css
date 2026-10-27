@@ -624,7 +624,10 @@ footer .f-links a:hover { color: var(--pink-deep); }
 
 .people-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+  /* 248px fits the longest address (renuka.sindhgatta.rajan@ibm.com, 31 chars
+     at 0.72rem mono ~= 215px) plus the card's 30px horizontal padding, so an
+     email renders on one line instead of wrapping. */
+  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
   gap: 14px;
 }
 
@@ -645,7 +648,11 @@ footer .f-links a:hover { color: var(--pink-deep); }
   color: var(--pink-deep);
   text-decoration: none;
   margin-top: 6px;
-  overflow-wrap: anywhere;
+  /* Only break as a last resort: the grid is sized so a full address fits on
+     one line, and `anywhere` was splitting addresses mid-word even when the
+     card had room. */
+  overflow-wrap: normal;
+  word-break: break-word;
 }
 .p-mail:hover { text-decoration: underline; }
 .p-mail-none { color: var(--ink-soft); font-style: italic; }
