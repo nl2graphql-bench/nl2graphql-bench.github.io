@@ -97,6 +97,14 @@ a { color: var(--pink-deep); }
 }
 .nav-cta:hover { background: var(--ink); color: #fff !important; }
 
+/* Hosted toolkit: a CTA, but dashed to read as work in progress. */
+.nav-cta-wip {
+  border-style: dashed;
+  border-color: var(--pink-deep);
+  color: var(--pink-deep) !important;
+}
+.nav-cta-wip:hover { background: var(--pink-deep); border-style: solid; color: #fff !important; }
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
