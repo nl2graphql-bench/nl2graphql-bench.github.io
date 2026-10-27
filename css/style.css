@@ -652,3 +652,18 @@ footer .f-links a:hover { color: var(--pink-deep); }
   border-top: 1px solid var(--line);
   line-height: 1.5;
 }
+
+/* "work in progress" tag on a download row name */
+.dl-wip {
+  display: inline-block;
+  margin-left: 7px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--pink-pale);
+  color: var(--pink-deep);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
