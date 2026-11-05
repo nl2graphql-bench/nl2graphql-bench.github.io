@@ -84,6 +84,31 @@
   </div>
 </section>
 
+<section id="hidden-reference" class="section-secondary">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Reference · our own runs on the hidden benchmark</div>
+      <h3>Hidden-benchmark reference numbers</h3>
+      <p>Our base models and best fine-tuned checkpoints, scored on the same 2,100-instance hidden benchmark that verifies submissions. Tuned values are the mean ± std over 3 training seeds; the best checkpoint per model and shot mode is shown, selected as the best of 9 configurations (3 LoRA settings × 3 training corpora). Fine-tuning gains transfer to the hidden set for granite and ministral, while llama gains only from in-family (2026-corpus) training — the full 54-cell matrix is documented in the <a href="https://aclanthology.org/2026.emnlp-industry.215/" target="_blank" rel="noopener">paper's experiment record</a>.</p>
+    </div>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <caption class="sr-only">Hidden-benchmark reference accuracy: base and best fine-tuned checkpoints, mean over 3 seeds</caption>
+        <thead><tr><th scope="col">Model</th><th scope="col">Setting</th><th scope="col">Base</th><th scope="col">Best fine-tuned</th><th scope="col">Δ</th></tr></thead>
+        <tbody>
+          <tr><td>Ministral-8B-Instruct-2410</td><td>0-shot</td><td>15.71</td><td>31.17 ± 0.37 <span class="sub">(C · 2024+2026)</span></td><td>+15.46</td></tr>
+          <tr><td>Ministral-8B-Instruct-2410</td><td>2-shot</td><td>12.81</td><td>28.45 ± 0.05 <span class="sub">(B · 2026)</span></td><td>+15.64</td></tr>
+          <tr><td>Granite-3.1-8B-Instruct</td><td>0-shot</td><td>3.71</td><td>27.97 ± 0.29 <span class="sub">(C · 2024+2026)</span></td><td>+24.26</td></tr>
+          <tr><td>Granite-3.1-8B-Instruct</td><td>2-shot</td><td>7.90</td><td>26.21 ± 0.12 <span class="sub">(A · 2026)</span></td><td>+18.31</td></tr>
+          <tr><td>Llama-3.1-8B-Instruct</td><td>0-shot</td><td>15.38</td><td>22.92 ± 2.19 <span class="sub">(C · 2026)</span></td><td>+7.54</td></tr>
+          <tr><td>Llama-3.1-8B-Instruct</td><td>2-shot</td><td>13.00</td><td>22.16 ± 1.48 <span class="sub">(B · 2026)</span></td><td>+9.16</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="matrix-footnote">RGEval semantic-equivalence scoring, identical to submission verification. Only aggregate percentages are published; the hidden set itself is never released. Claude models are intentionally not run on the hidden benchmark. Caveats: base scores for weaker models are understated by the strict format rule (a prediction missing the <code>query { }</code> wrapper scores 0 regardless of field correctness — this hits granite's base hardest); the "best fine-tuned" values are the maximum over 9 configurations and are therefore upward-biased where seed variance is high (e.g. llama ±2.2-4.6).</p>
+  </div>
+</section>
+
 <section id="dataset" class="section-secondary dataset-featured">
   <div class="wrap">
     <div class="section-head">
